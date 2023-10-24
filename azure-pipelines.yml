@@ -28,17 +28,6 @@ stages:
               projects: '**/WebApp.csproj'
               arguments: '--configuration $(buildConfiguration)'
 
-      - job: Test
-        steps:
-          - task: DotNetCoreCLI@2
-            inputs:
-              command: 'test'
-              projects: '**/*UnitTest*.csproj'
-              
-  - stage: Publish
-    jobs:
-      - job:
-        steps:
           - task: DotNetCoreCLI@2
             displayName: Create WebApp package (.zip)
             inputs:
@@ -46,3 +35,10 @@ stages:
               publishWebProjects: true
               arguments: '-- configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
               zipAfterPublish: true
+
+      - job: Test
+        steps:
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: 'test'
+              projects: '**/*UnitTest*.csproj'
