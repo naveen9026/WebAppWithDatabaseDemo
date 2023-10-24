@@ -33,7 +33,7 @@ stages:
             inputs:
               command: 'publish'
               publishWebProjects: true
-              arguments: '-- configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
+              arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
               zipAfterPublish: true
 
       - job: Test
